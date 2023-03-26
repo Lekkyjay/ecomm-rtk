@@ -7,14 +7,14 @@ import { RootState } from './store'
 interface IState {
   products: IProduct[],
   productsStatus: string,
-  productSingle: [],
+  productSingle: IProduct,
   productSingleStatus: string
 }
 
 const initialState: IState = {
   products: [],
   productsStatus: STATUS.IDLE,
-  productSingle: [],
+  productSingle: {} as IProduct,
   productSingleStatus: STATUS.IDLE
 }
 
@@ -60,7 +60,7 @@ export const fetchAsyncProducts = createAsyncThunk('products/fetch', async(limit
 })
 
 // getting the single product data also
-export const fetchAsyncProductSingle = createAsyncThunk('product-single/fetch', async(id) => {
+export const fetchAsyncProductSingle = createAsyncThunk('product-single/fetch', async(id: string) => {
     const response = await fetch(`${BASE_URL}products/${id}`)
     const data = await response.json()
     return data
