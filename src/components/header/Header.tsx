@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../Navbar'
+import Navbar from '../navbar/Navbar'
 import './Header.scss'
 
 export default function Header() {

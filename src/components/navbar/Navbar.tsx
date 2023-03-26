@@ -1,13 +1,20 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { selectAllCategories } from '../redux/categorySlice'
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { setSidebarOn } from '../redux/sidebarSlice'
+import { getCartTotal, selectAllCarts, selectCartItemsCount } from '../../redux/cartSlice'
+import { selectAllCategories } from '../../redux/categorySlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { setSidebarOn } from '../../redux/sidebarSlice'
 import './Navbar.scss'
 
 export default function Navbar() {
   const dispatch = useAppDispatch()
   const categories = useAppSelector(selectAllCategories)
-  console.log({categories})
+  const carts = useAppSelector(selectAllCarts)
+  const itemsCount = useAppSelector(selectCartItemsCount)
+
+  useEffect(() => {
+    dispatch(getCartTotal())
+  }, [carts])
 
   return (
     <nav className='navbar'>
@@ -51,7 +58,7 @@ export default function Navbar() {
         <div className='navbar-cart flex align-center'>
           <Link to = "/cart" className='cart-btn'>
             <i className='fa-solid fa-cart-shopping'></i>
-            <div className='cart-items-value'>0</div>
+            <div className='cart-items-value'>{itemsCount}</div>
           </Link>
         </div>
       </div>
