@@ -3,11 +3,13 @@ import { Cart, CategoryProducts, Home, ProductDetails, Search } from './pages'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import './App.scss'
+import Sidebar from './components/sidebar/Sidebar'
 
 const Layout = () => {
   return (
     <div className="app">
       <Header />
+      <Sidebar />
         <Outlet />
       <Footer />
     </div>
