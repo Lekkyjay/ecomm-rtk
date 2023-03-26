@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../redux/hooks'
+import { setSidebarOn } from '../redux/sidebarSlice'
 import './Navbar.scss'
 
 export default function Navbar() {
+  const dispatch = useAppDispatch()
+
   return (
     <nav className='navbar'>
       <div className='navbar-cnt flex align-center'>
         <div className='brand-and-toggler flex align-center'>
-          <button type = "button" className='sidebar-show-btn text-white'>
+          <button type = "button" className='sidebar-show-btn text-white'  onClick={() => dispatch(setSidebarOn())}>
             <i className='fas fa-bars'></i>
           </button>
           <Link to = "/" className='navbar-brand flex align-center'>
