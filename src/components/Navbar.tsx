@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../redux/hooks'
+import { selectAllCategories } from '../redux/categorySlice'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { setSidebarOn } from '../redux/sidebarSlice'
 import './Navbar.scss'
 
 export default function Navbar() {
   const dispatch = useAppDispatch()
+  const categories = useAppSelector(selectAllCategories)
+  console.log({categories})
 
   return (
     <nav className='navbar'>
@@ -34,11 +37,14 @@ export default function Navbar() {
           </div>
 
           <ul className='navbar-nav flex align-center fs-12 fw-4 font-manrope'>
-            <li className='nav-item no-wrap'>
-              <Link to = '' className='nav-link text-capitalize'>Cat-1</Link>
-              <Link to = '' className='nav-link text-capitalize'>Cat-2</Link>
-              <Link to = '' className='nav-link text-capitalize'>Cat-3</Link>
-            </li>
+            {
+              // taking only first 8 categories
+              categories.slice(0, 8).map((category, idx) => (
+                <li className='nav-item no-wrap' key = {idx}>
+                  <Link to = {`category/${category}`} className='nav-link text-capitalize'>{category.replace("-", " ")}</Link>
+                </li>
+              ))
+            }
           </ul>
         </div>
 
