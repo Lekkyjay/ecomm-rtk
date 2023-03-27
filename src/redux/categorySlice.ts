@@ -57,7 +57,7 @@ export const fetchAsyncCategories = createAsyncThunk('categories/fetch', async()
   return data
 })
 
-export const fetchAsyncProductsOfCategory = createAsyncThunk('category-products/fetch', async(category) => {
+export const fetchAsyncProductsOfCategory = createAsyncThunk('category-products/fetch', async(category: string) => {
   const response = await fetch(`${BASE_URL}products/category/${category}`)
   const data = await response.json()
   return data.products
