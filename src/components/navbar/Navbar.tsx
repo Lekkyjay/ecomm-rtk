@@ -4,6 +4,7 @@ import { getCartTotal, selectAllCarts, selectCartItemsCount } from '../../redux/
 import { selectAllCategories } from '../../redux/categorySlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { setSidebarOn } from '../../redux/sidebarSlice'
+import CartModal from '../cartModal/CartModal'
 import './Navbar.scss'
 
 export default function Navbar() {
@@ -59,6 +60,7 @@ export default function Navbar() {
           <Link to = "/cart" className='cart-btn'>
             <i className='fa-solid fa-cart-shopping'></i>
             <div className='cart-items-value'>{itemsCount}</div>
+            <CartModal carts = {carts} />
           </Link>
         </div>
       </div>
