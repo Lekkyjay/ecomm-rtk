@@ -15,11 +15,10 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchAsyncProducts(50))
-  }, [])
+  }, [dispatch])
 
   const products = useAppSelector(selectAllProducts)
   const productStatus = useAppSelector(selectAllProductsStatus)
-
 
   // randomizing the products in the list
   const tempProducts: IProduct[] = []
@@ -34,10 +33,10 @@ export default function Home() {
     }
   }
 
-  let catProductsOne = products.filter(product => product.category === categories[0])
-  let catProductsTwo = products.filter(product => product.category === categories[1])
-  let catProductsThree = products.filter(product => product.category === categories[2])
-  let catProductsFour = products.filter(product => product.category === categories[3])
+  let catProductsOne = products.filter(product => product.category === categories[0]?.slug)
+  let catProductsTwo = products.filter(product => product.category === categories[1]?.slug)
+  let catProductsThree = products.filter(product => product.category === categories[2]?.slug)
+  let catProductsFour = products.filter(product => product.category === categories[3]?.slug)
 
   return (
     <main>
@@ -56,28 +55,28 @@ export default function Home() {
 
             <div className='categories-item'>
               <div className='title-md'>
-                <h3>{categories[0]}</h3>
+                <h3>{categories[0]?.name}</h3>
               </div>
               {productStatus === STATUS.LOADING ? <Loader /> : <ProductList products={catProductsOne} />}
             </div>
 
             <div className='categories-item'>
               <div className='title-md'>
-                <h3>{categories[1]}</h3>
+                <h3>{categories[1]?.name}</h3>
               </div>
               {productStatus === STATUS.LOADING ? <Loader /> : <ProductList products={catProductsTwo} />}
             </div>
 
             <div className='categories-item'>
               <div className='title-md'>
-                <h3>{categories[2]}</h3>
+                <h3>{categories[2]?.name}</h3>
               </div>
               {productStatus === STATUS.LOADING ? <Loader /> : <ProductList products={catProductsThree} />}
             </div>
 
             <div className='categories-item'>
               <div className='title-md'>
-                <h3>{categories[3]}</h3>
+                <h3>{categories[3]?.name}</h3>
               </div>
               {productStatus === STATUS.LOADING ? <Loader /> : <ProductList products={catProductsFour} />}
             </div>

@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {BASE_URL} from '../utils/apiURL'
 import {STATUS} from '../utils/status'
 import { RootState } from './store'
+import { ICategory } from '../utils/interfaces'
 
 interface IState {
-  categories: string[]
+  categories: ICategory[]
   categoriesStatus: string
   categoryProducts: [],
   categoryProductsStatus: string
